@@ -6,7 +6,7 @@
 <body onload="window.print()">
 
 	<tr>
-		<td><h3><center>REKAPITULASI SURAT MASUK</center></h2></td>
+		<td><h3><center>REKAPITULASI SURAT MASUK</center></h3></td>
 	</tr>
 	<tr>
 		<td><h2><center>SMA NEGERI 1 TEGAL </center></h2></td>
