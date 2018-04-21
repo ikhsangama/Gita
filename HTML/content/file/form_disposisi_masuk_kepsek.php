@@ -33,11 +33,11 @@
 								</select>			
 							</div>
 
-							<div class="form-group">
-							<label>Tanggal Disposisi</label>
-								<input class="form-control" type="date" id="tgl_disposisi" name="tgl_disposisi" required onchange="checkDate()" max="<?php echo date("Y-m-d") ?>" min="<?php echo date("Y-m-d") ?>"/>
-							</div>
-
+                            <div class="form-group">
+                                <label>Tanggal disposisi</label>
+                                <input class="form-control" type="date" id="tgl_surat" name="tgl_disurat"
+                                       required onchange="checkDate()" max="<?php echo date("Y-m-d") ?>"/>
+                            </div>
 							<div class="form-group">
 							<label>Diteruskan Ke</label>
 								<br/>
