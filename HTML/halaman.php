@@ -233,8 +233,6 @@ $user = mysqli_fetch_assoc($result);
                 include "content/server/hapus_pengguna.php";
             } else if ($_GET['s'] == 'reset_password') {
                 include "content/server/reset_password.php";
-            } else if ($_GET['s'] == 'info_pengguna_login') {
-                include "content/file/info_pengguna_login.php";
             } else if ($_GET['s'] == 'ubah_pengguna') {
                 // $idnya = $_GET['id'];
                 include "content/server/ubah_pengguna.php";
@@ -271,8 +269,6 @@ $user = mysqli_fetch_assoc($result);
                 include "content/file/form_disposisi_keluar_kepsek.php";
             } else if ($_GET['s'] == 'disposisi_kepsek') {
                 include "content/server/disposisi_kepsek.php";
-            } else if ($_GET['s'] == 'info_pengguna_login') {
-                include "content/file/info_pengguna_login.php";
             } else if ($_GET['s'] == 'ubah_pengguna') {
                 // $idnya = $_GET['id'];
                 include "content/server/ubah_pengguna.php";

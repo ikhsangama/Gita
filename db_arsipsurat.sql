@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2018 at 12:41 PM
+-- Generation Time: Jun 04, 2018 at 02:54 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `surat_keluar` (
   `id_surat_keluar` int(11) NOT NULL,
-  `no_hal_surat` int(11) NOT NULL,
+  `no_hal_surat` varchar(11) NOT NULL,
   `tgl_surat_dikeluarkan` date NOT NULL,
   `no_surat_keluar` varchar(50) NOT NULL,
   `perihal` varchar(50) NOT NULL,
@@ -43,7 +43,8 @@ CREATE TABLE `surat_keluar` (
 --
 
 INSERT INTO `surat_keluar` (`id_surat_keluar`, `no_hal_surat`, `tgl_surat_dikeluarkan`, `no_surat_keluar`, `perihal`, `tujuan`, `hasil_scan`) VALUES
-(8, 121, '2018-04-01', '1212122', 'apa wis', 'Wali murid', 'uploads/IMG_20160604_064353.jpg');
+(9, '2', '2018-03-18', '02/SMAN1/03', 'Permohonan Pembicara', 'Kepala SMA N 1 Brebes', 'uploads/cth_keluar1.jpg'),
+(11, '422.3', '2018-04-08', '012/SMAN1/2018', 'Surat Pemberitahuan', 'Wali murid', 'uploads/cth_keluar2.jpg');
 
 -- --------------------------------------------------------
 
@@ -54,7 +55,6 @@ INSERT INTO `surat_keluar` (`id_surat_keluar`, `no_hal_surat`, `tgl_surat_dikelu
 CREATE TABLE `surat_masuk` (
   `id_surat_masuk` int(11) NOT NULL,
   `no_hal_surat` varchar(11) NOT NULL,
-  `no_urut_surat` int(11) NOT NULL,
   `tgl_disurat` date NOT NULL,
   `asal_surat` varchar(100) NOT NULL,
   `tgl_surat_diterima` date NOT NULL,
@@ -72,12 +72,9 @@ CREATE TABLE `surat_masuk` (
 -- Dumping data for table `surat_masuk`
 --
 
-INSERT INTO `surat_masuk` (`id_surat_masuk`, `no_hal_surat`, `no_urut_surat`, `tgl_disurat`, `asal_surat`, `tgl_surat_diterima`, `no_surat_masuk`, `perihal`, `tujuan`, `status_surat`, `hasil_scan`, `tgl_disposisi`, `diteruskan_ke`, `pesan`) VALUES
-(2, 'qqq', 0, '2018-01-20', 'qqq', '2018-01-22', 'qqq', 'qqq', 'qqq', 'Sudah Disposisi', 'uploads/2013-08-15 18.06.25_.jpg', '2018-02-02', 'Kasubag Kepegawaian dan Keuangan', ' Sip'),
-(5, '227.1', 100, '2018-01-10', 'Universitas Diponegoro', '2018-01-28', '112/DL/SF/123', 'Permohonan Ijin PKL', 'Kepala Sekolah', 'Sudah Disposisi', 'uploads/2013-08-15 18.53.30_.jpg', '2018-02-02', 'Kasubag Akademik', ' Ya lanjutkan oke'),
-(9, '443', 0, '2018-01-03', 'Universitas Diponegoro', '2018-01-31', '125/SSS/3737/P', 'Apa wis', 'Kepala Sekolah', 'Sudah Disposisi', 'uploads/BeautyPlus_20170128001214_save.jpg', '2018-02-06', ' Kepala Humas', ' Tolong dilanjutkan'),
-(10, '442', 0, '2018-04-10', 'Universitas Diponegoro', '2018-04-13', 'ABC/111/P/2018', 'Surat Pemberitahuan', 'Kepala Sekolah', 'Belum Disposisi', 'uploads/khs gita.png', '0000-00-00', '', ''),
-(11, '111', 0, '2018-04-02', 'qqqqq', '2018-04-08', '121212asasa', 'qwqwq', 'qwqw', 'Belum Disposisi', 'uploads/khs gita.pdf', '0000-00-00', '', '');
+INSERT INTO `surat_masuk` (`id_surat_masuk`, `no_hal_surat`, `tgl_disurat`, `asal_surat`, `tgl_surat_diterima`, `no_surat_masuk`, `perihal`, `tujuan`, `status_surat`, `hasil_scan`, `tgl_disposisi`, `diteruskan_ke`, `pesan`) VALUES
+(13, '418.47', '2018-01-10', 'Dinas Pendidikan', '2018-01-17', '420/5624/418.47/2018', 'Mutasi Siswa', 'Kepala Sekolah', 'Sudah Disposisi', 'uploads/cth_masuk1.jpg', '2018-05-15', ' waka humas', ' ya'),
+(16, '422.3', '2018-06-01', 'Universitas Diponegoro', '2018-06-03', '99/PRP/2018', 'Permohonan PKL', 'Kepala Sekolah', 'Belum Disposisi', 'uploads/cth_masuk2.jpg', '0000-00-00', '', '');
 
 -- --------------------------------------------------------
 
@@ -90,7 +87,7 @@ CREATE TABLE `user` (
   `nama` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `jabatan` int(5) NOT NULL,
+  `jabatan` int(1) NOT NULL,
   `nama_jabatan` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -100,7 +97,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `jabatan`, `nama_jabatan`) VALUES
 (1, 'Amelia Gita Pertiwi', 'admin', '4a7d1ed414474e4033ac29ccb8653d9b', 0, 'Admin'),
-(3, 'Milochaaaaaaaaan', 'kepsek', '4a7d1ed414474e4033ac29ccb8653d9b', 1, 'Kepala Sekolah');
+(13, 'Masduki, S.Pd, M.Pd', 'kepsek', '4a7d1ed414474e4033ac29ccb8653d9b', 1, 'Kepala Sekolah');
 
 --
 -- Indexes for dumped tables
@@ -132,17 +129,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `surat_keluar`
 --
 ALTER TABLE `surat_keluar`
-  MODIFY `id_surat_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_surat_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `surat_masuk`
 --
 ALTER TABLE `surat_masuk`
-  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;COMMIT;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

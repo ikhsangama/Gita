@@ -12,9 +12,9 @@
                 <canvas id="myChart1" style="width: 512px; height: 256px"></canvas>
                 <h6>
                     <center>Total: <?php include "content/config/koneksi.php";
-                        $query1 = "SELECT * FROM surat_masuk";
+                        $query1 = "SELECT * FROM surat_masuk WHERE YEAR(tgl_surat_diterima)=YEAR(NOW())";
                         $result1 = mysqli_query($con, $query1) or die(mysqli_error($con));
-                        $query2 = "SELECT * FROM surat_keluar";
+                        $query2 = "SELECT * FROM surat_keluar WHERE YEAR(tgl_surat_dikeluarkan)=YEAR(NOW())";
                         $result2 = mysqli_query($con, $query2) or die(mysqli_error($con));
                         $jumlah = mysqli_num_rows($result1) + mysqli_num_rows($result2);
                         echo $jumlah ?></center>
@@ -25,9 +25,9 @@
                 <canvas id="myChart2" style="width: 512px; height: 256px"></canvas>
                 <h6>
                     <center>Total: <?php
-                        $query1 = "SELECT * FROM surat_masuk WHERE status_surat='Sudah Disposisi'";
+                        $query1 = "SELECT * FROM surat_masuk WHERE status_surat='Sudah Disposisi' AND YEAR(tgl_surat_diterima)=YEAR(NOW())";
                         $result1 = mysqli_query($con, $query1) or die(mysqli_error($con));
-                        $query2 = "SELECT * FROM surat_masuk WHERE status_surat='Belum Disposisi'";
+                        $query2 = "SELECT * FROM surat_masuk WHERE status_surat='Belum Disposisi' AND YEAR(tgl_surat_diterima)=YEAR(NOW())";
                         $result2 = mysqli_query($con, $query2) or die(mysqli_error($con));
                         $jumlah = mysqli_num_rows($result1) + mysqli_num_rows($result2);
                         echo $jumlah ?></center>
@@ -77,13 +77,14 @@
 <script>
 
     var disposisi = <?php
-        $query = "SELECT * FROM surat_masuk WHERE status_surat='Sudah Disposisi'";
+        $tahun = date('Y');
+        $query = "SELECT * FROM surat_masuk WHERE status_surat='Sudah Disposisi' AND YEAR(tgl_surat_diterima)=YEAR(NOW())";
         $result = mysqli_query($con, $query) or die(mysqli_error($con));
         $jumlah = mysqli_num_rows($result);
         echo $jumlah ?>;
 
     var belum_disposisi = <?php
-        $query = "SELECT * FROM surat_masuk WHERE status_surat='Belum Disposisi'";
+        $query = "SELECT * FROM surat_masuk WHERE status_surat='Belum Disposisi' AND YEAR(tgl_surat_diterima)=YEAR(NOW())";
         $result = mysqli_query($con, $query) or die(mysqli_error($con));
         $jumlah = mysqli_num_rows($result);
         echo $jumlah ?>;
@@ -91,7 +92,7 @@
     var surat_masuk = disposisi + belum_disposisi;
 
     var surat_keluar = <?php
-        $query = "SELECT * FROM surat_keluar";
+        $query = "SELECT * FROM surat_keluar WHERE YEAR(tgl_surat_dikeluarkan)=YEAR(NOW())";
         $result = mysqli_query($con, $query) or die(mysqli_error($con));
         $jumlah = mysqli_num_rows($result);
         echo $jumlah ?>;
@@ -106,12 +107,12 @@
                 label: 'Total',
                 data: [
                     <?php
-                    $query = "SELECT * FROM surat_masuk";
+                    $query = "SELECT * FROM surat_masuk WHERE YEAR(tgl_surat_diterima)=YEAR(NOW())";
                     $result = mysqli_query($con, $query) or die(mysqli_error($con));
                     $jumlah = mysqli_num_rows($result);
                     echo $jumlah ?>,
                     <?php
-                    $query = "SELECT * FROM surat_keluar";
+                    $query = "SELECT * FROM surat_keluar WHERE YEAR(tgl_surat_dikeluarkan)=YEAR(NOW())";
                     $result = mysqli_query($con, $query) or die(mysqli_error($con));
                     $jumlah = mysqli_num_rows($result);
                     echo $jumlah ?>],
@@ -132,7 +133,7 @@
     var myChart2 = new Chart(ctx2, {
         type: "doughnut",
         data: {
-            labels: ["Disposisi", "Belum Disposisi"],
+            labels: ["Sudah Disposisi", "Belum Disposisi"],
             datasets: [{
                 label: 'Total',
                 data: [disposisi, belum_disposisi],

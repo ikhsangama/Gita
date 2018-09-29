@@ -2,10 +2,7 @@
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-            <a href="#">Home</a>
-            </li>
-            <li class="breadcrumb-item active">Surat Masuk</li>
+            <li class="breadcrumb-item active"><a href="halaman.php?s=lihat_surat_masuk_kepsek">Surat Masuk</a></li>
             <li class="breadcrumb-item active">Detail Surat Masuk</li>
         </ol>
 

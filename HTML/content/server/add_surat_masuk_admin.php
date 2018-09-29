@@ -1,11 +1,11 @@
 <?php
 session_start();
 include "../config/koneksi.php";
-
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"])) {
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -19,32 +19,34 @@ if (isset($_POST["submit"])) {
 }
 // Check if file already exists
 if (file_exists($target_file)) {
-    $_SESSION['msg'] = "Sorry, file already exists.";
+    $_SESSION['msg'] = "File gambar sudah ada.";
     $uploadOk = 0;
 }
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 2000000) {
-    $_SESSION['msg'] = "Sorry, your file is too large.";
+    $_SESSION['msg'] = "File gambar melebihi batas ukuran (max 2MB).";
     $uploadOk = 0;
 }
 // Allow certain file formats
-if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-    && $imageFileType != "gif") {
-    $_SESSION['msg'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+if ($imageFileType != "jpg" && $imageFileType != "JPG" && $imageFileType != "png" && $imageFileType != "PNG" && $imageFileType != "jpeg" && $imageFileType != "JPEG" && $imageFileType != "gif") {
+    $_SESSION['msg'] = "Hanya file bertipe JPG, JPEG, PNG & GIF yang diijinkan.";
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    header('Location: http://localhost:63342/cobasurat/HTML/halaman.php?s=tambah_surat_masuk');
+    header('Location: http://localhost/cobasurat/HTML/halaman.php?s=tambah_surat_masuk');
     // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
-    } else {
-        $_SESSION['msg'] = "Sorry, there was an error uploading your file.";
-        $uploadOk = 0;
-    }
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            // echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
+        } else {
+            // echo "Sorry, there was an error uploading your file.";
+            $_SESSION['msg'] = "File gambar melebihi batas ukuran (max 2MB).";
+            header('Location: http://localhost/cobasurat/HTML/halaman.php?s=tambah_surat_masuk');
+            $uploadOk = 0;
+        }
 }
+
 if ($uploadOk == 1) {
     if (ISSET($_POST['save'])) {
         $no_hal_surat = $_POST['no_hal_surat'];
@@ -61,26 +63,25 @@ if ($uploadOk == 1) {
         $result = mysqli_query($con, $query);
         $row = mysqli_fetch_assoc($result);
         if (empty($row)) {
-
             $sql = "INSERT INTO surat_masuk (no_hal_surat, tgl_disurat, asal_surat, tgl_surat_diterima, no_surat_masuk, perihal, tujuan, status_surat, hasil_scan)
-									VALUES
-									('$no_hal_surat', '$tgl_disurat', '$asal_surat', '$tgl_surat_diterima', '$no_surat_masuk', '$perihal', '$tujuan', '$status_surat', '$target_file')";
+				VALUES
+				('$no_hal_surat', '$tgl_disurat', '$asal_surat', '$tgl_surat_diterima', '$no_surat_masuk', '$perihal', '$tujuan', '$status_surat', '$target_file')";
 
             $result_simpan = mysqli_query($con, $sql);
 
             if ($sql) {
-                //echo "berhasil";
-                //$_SESSION['success'] = "Data Berhasil Ditambah";
+                $_SESSION['success'] = "Data Berhasil Ditambah";
                 echo "<meta http-equiv=\"refresh\" content=\"0; url=../../halaman.php?s=lihat_surat_masuk_admin\">";
                 echo mysqli_error($con);
             } else {
-                //$_SESSION['error'] = "Proses Gagal, Terjadi Kesalahan : ".mysql_error();
+                $_SESSION['error'] = "Proses Gagal, Terjadi Kesalahan : ".mysqli_error();
                 echo "<meta http-equiv=\"refresh\" content=\"0; url=../../halaman.php?s=lihat_surat_masuk_admin\">";
                 echo mysqli_error($con);
             }
         } else {
-            echo "<script>alert('Tidak dapat menambahkan, karena nomor surat sudah ada.')</script>";
-            echo "<meta http-equiv=\"refresh\" content=\"0; url=../../halaman.php?s=tambah_surat_keluar\">";
+                $_SESSION['msg'] = "Tidak dapat menambahkan karena nomor surat sudah ada.";
+                echo "<meta http-equiv=\"refresh\" content=\"0; url=../../halaman.php?s=tambah_surat_masuk\">";
+                echo mysqli_error($con);
         }
     }
 }

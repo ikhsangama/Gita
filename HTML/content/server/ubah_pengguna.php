@@ -20,16 +20,16 @@
 			$_SESSION['username'] = $username;
 			if($result2){
 					$_SESSION['nama'] = $nama;
-					echo "<script>alert('Data berhasil diganti')</script>";
+					$_SESSION['success'] = "Data berhasil diganti";
 					echo "<meta http-equiv=\"refresh\" content=\"0; url=halaman.php?s=ubah_data_pengguna\">";
 			}else{
-					echo "<script>alert('Proses ganti data gagal ') </script>";
-					echo "<meta http-equiv=\"refresh\" content=\"2; url=halaman.php?s=ubah_data_pengguna\">";
+					$_SESSION['error'] = "Proses ganti data gagal";
+					echo "<meta http-equiv=\"refresh\" content=\"1; url=halaman.php?s=ubah_data_pengguna\">";
 					echo mysqli_error($con);
 			}
 		} else {
-			echo '<script>alert("Username is exist.")</script>';
-			echo "<meta http-equiv=\"refresh\" content=\"2; url=halaman.php?s=ubah_data_pengguna\">";
+			$_SESSION['error'] = "Username sudah ada";
+			echo "<meta http-equiv=\"refresh\" content=\"1; url=halaman.php?s=ubah_data_pengguna\">";
 		}
 
 ?>

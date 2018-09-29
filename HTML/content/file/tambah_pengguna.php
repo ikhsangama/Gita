@@ -3,9 +3,8 @@
 		<!-- Breadcrumbs-->
 	    <ol class="breadcrumb">
 	    	<li class="breadcrumb-item">
-	        	<a href="#">Dashboard</a>
+	        	<a href="halaman.php?s=info_pengguna">Pengguna</a>
 	        </li>
-	        <li class="breadcrumb-item active">Pengguna</li>
 	        <li class="breadcrumb-item active">Tambah Pengguna</li>
 	    </ol>
 
@@ -20,6 +19,13 @@
 	    					<div class="widget_header">
                                 <h5>Form Tambah Pengguna</h5>
                             </div>
+
+                            <?php
+						        if(ISSET($_SESSION['error'])){
+			                    	echo '<div class="alert alert-danger alert-dismissable" style="width:100%; height:10%;" >'.$_SESSION['error'].'</div>';
+			                        unset($_SESSION['error']);
+			                    }
+						    ?>
 
                             <div class="form-group">
 								<label>Nama</label>

@@ -2,10 +2,8 @@
 	<div class="container-fluid">
 		<!-- Breadcrumbs-->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Surat Keluar</li>
+            <li class="breadcrumb-item active">
+            <a href="halaman.php?s=lihat_surat_keluar_kepsek">Surat Keluar</a></li>
             <li class="breadcrumb-item active">Detail Surat Keluar</li>
         </ol>
 

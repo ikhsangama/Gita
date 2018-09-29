@@ -2,8 +2,6 @@
     <div class="container-fluid">
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#">Dashboard</a></li>
         <li class="breadcrumb-item active">
           <a href="halaman.php?s=lihat_surat_keluar_admin">Surat Keluar</a></li>
         <li class="breadcrumb-item active">Tambah Surat Keluar</li>
@@ -23,6 +21,12 @@
                                 <div class="widget_header">
                                     <h5>Form Tambah Surat Keluar</h5>
                                 </div>
+                                <?php
+                                    if(ISSET($_SESSION['msg'])){
+                                      echo '<div class="alert alert-danger alert-dismissable" style="width:100%; height:10%;" >'.$_SESSION['msg'].'</div>';
+                                      unset($_SESSION['msg']);
+                                    }
+                                ?>
 
                                 <div class="form-group">
                                     <label>No. Hal Surat</label>

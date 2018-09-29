@@ -6,7 +6,6 @@
 	include "../config/koneksi.php";
 
 		$username = $_POST['username'];
-		//$password = $_POST['password'];
 		$password = md5($_POST['password']);
 
 		// query untuk mendapatkan record dari username
@@ -25,26 +24,22 @@
 	        $_SESSION['username'] = $cek['username'];
 	        $_SESSION['password'] = $cek['password'];
 	        $_SESSION['id_user'] = $cek['id_user'];
-	        // header('location:halaman.php?s=home');
 	        echo"<meta http-equiv=\"refresh\" content=\"0; url=../../halaman.php?s=home\">";
 	    }
 	    
 	    else{
-	    	// echo 'password salah';	
 	       	$_SESSION['error']="Terjadi kesalahan di username atau password";
 	      	echo"<meta http-equiv=\"refresh\" content=\"0; url=../../Login.php\">";
 	       	echo mysqli_error($con);
-	    }
-
-	
+	    }	
 ?>
 
 <?php
     if (isset($_SESSION['jabatan']) && ($_SESSION['jabatan']==0 || $_SESSION['jabatan']==1)) {
-      if (ISSET($_GET['s'])) {
-        if ($_GET['s'] == 'home') {
-          include "content/file/home.php";
-        }
-      }
+        if (ISSET($_GET['s'])) {
+        	if ($_GET['s'] == 'home') {
+          	include "content/file/home.php";
+        	}
+      	}
     }
 ?>

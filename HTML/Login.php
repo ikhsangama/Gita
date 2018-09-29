@@ -22,7 +22,7 @@
   	<!-- Custom styles for this template-->
   	<link href="../assets/css/styles.css" rel="stylesheet">
 </head>
-<body class="bg-dark" style="font-family: sans-serif;">
+<body class="bg-light" style="font-family: sans-serif;">
 	<div class="container">
 		
 			<div class="row text-center">
@@ -31,7 +31,6 @@
                 <h4>Selamat Datang di</h4>
                 <h2>Sistem Pengarsipan Surat</h2>
                 <h3>SMA Negeri 1 Tegal</h3>
-                 <br />
         </div>
       </div>
 

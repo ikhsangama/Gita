@@ -11,9 +11,9 @@
 		<!-- Breadcrumbs-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
+            <a href="#">Kelola Akun</a>
             </li>
-            <li class="breadcrumb-item active">Kelola Akun</li>
+            <li class="breadcrumb-item active">Ubah Data Pengguna</li>
         </ol>
 
         <div class="card mb-3">
@@ -27,6 +27,16 @@
         					<div class="widget_header">
                                 <h5>Form Ubah Data Pengguna</h5>
                             </div>
+                            
+                            <?php
+						        if(ISSET($_SESSION['success'])){
+						            echo '<div class="alert alert-success alert-dismissable" style="width:100%; height:10%;" >'.$_SESSION['success'].'</div>';
+						            unset($_SESSION['success']);
+						        }else if(ISSET($_SESSION['error'])){
+			                    	echo '<div class="alert alert-danger alert-dismissable" style="width:100%; height:10%;" >'.$_SESSION['error'].'</div>';
+			                        unset($_SESSION['error']);
+			                    }
+						    ?>
 
                             <div class="form-group">
 								<label>Nama</label>
@@ -35,21 +45,15 @@
 										
 							<div class="form-group">
 								<label>Username</label>
-											
-									<input class="form-control" type="text" pattern="^\S+$" name="username" required value="<?php echo htmlspecialchars($user['username']);?>" />
-											
+									<input class="form-control" type="text" pattern="^\S+$" name="username" required value="<?php echo htmlspecialchars($user['username']);?>" />	
 							</div>
 
 							<div class="form-group">
-								<label>Jabatan</label>
-											
+								<label>Jabatan</label>											
 									<input class="form-control" type="text" pattern="^\S+$" name="nama_jabatan" required value="<?php echo htmlspecialchars($user['nama_jabatan']);?>" readonly/>
-											
 							</div>
 								
-							
 							<div class="form-group">
-								
 								<button type="submit" value="Simpan" name="save" class="btn btn-primary"> Simpan </button>
 							</div>
         				</form>

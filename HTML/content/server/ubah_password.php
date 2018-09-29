@@ -17,23 +17,29 @@
 
 		if (($passwordlama == $cek['password']) && ($passwordbaru == $konfirmasipassword)) {
 				$query2 = "UPDATE user SET password ='$passwordbaru' WHERE id_user = '$id'";
-				$result2 = mysqli_query($con, $query2);
-
-				if($query2){
-					echo "<script>alert('Password berhasil diganti')</script>";
-					echo "<meta http-equiv=\"refresh\" content=\"0; url=halaman.php?s=ubah_data_password\">";
+				if ($passwordbaru != $passwordlama) {
+					$result2 = mysqli_query($con, $query2);
+					if($query2){
+						$_SESSION['success'] = "Password berhasil diganti";
+						echo "<meta http-equiv=\"refresh\" content=\"0; url=halaman.php?s=ubah_data_password\">";
+					}else{
+						$_SESSION['error'] = "Proses ganti password gagal";
+						echo "<meta http-equiv=\"refresh\" content=\"2; url=halaman.php?s=ubah_data_password\">";
+						echo mysqli_error($con);
+					}
 				}else{
-					echo "<script>alert('Proses gagal, terjadi kesalahan !') </script>";
-					echo "<meta http-equiv=\"refresh\" content=\"2; url=halaman.php?s=ubah_data_password\">";
-					echo mysqli_error($con);
+					$_SESSION['error'] = "Password baru tidak boleh sama dengan password lama";
+						echo "<meta http-equiv=\"refresh\" content=\"2; url=halaman.php?s=ubah_data_password\">";
+						echo mysqli_error($con);
 				}
+
 		}else{
-			echo "<script>alert('Inputan Password tidak sesuai')</script>";
+			$_SESSION['error'] = "Inputan password tidak sesuai.";
 			echo "<meta http-equiv=\"refresh\" content=\"2; url=halaman.php?s=ubah_data_password\">";
 			echo mysqli_error($con);
 		}		
 	}else{
-		echo "<script>alert('Proses ganti password gagal')</script>";
+		$_SESSION['error'] = "Proses ganti password gagal.";
 		echo "<meta http-equiv=\"refresh\" content=\"2; url=halaman.php?s=ubah_data_password\">";
 		echo mysqli_error($con);
 	}

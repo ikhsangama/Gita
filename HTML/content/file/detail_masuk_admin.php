@@ -2,15 +2,10 @@
     <div class="container-fluid">
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-            <a href="#">Home</a>
-            </li>
-            <li class="breadcrumb-item active">Surat Masuk</li>
+            <li class="breadcrumb-item active"><a href="halaman.php?s=lihat_surat_masuk_admin">Surat Masuk</a></li>
             <li class="breadcrumb-item active">Detail Surat Masuk</li>
         </ol>
         
-        <br>
-
         <div class="card mb-3">
             <div class="card-header">
                 Detail Surat Masuk</div>
@@ -75,7 +70,7 @@
                                         echo "<td >".htmlspecialchars($row['pesan'])."</td>";
                                     echo "</tr>";
                     }
-                    echo"<a style='border-radius:5px;' class='btn btn-sm btn-primary'  href = 'content/file/cetak_hasil_disposisi.php?id={$id}'>Cetak Hasil Disposisi</a>";
+                    echo"<a style='border-radius:5px;' class='btn btn-sm btn-primary' target='_blank' href = 'content/file/cetak_hasil_disposisi.php?id={$id}'>Cetak Hasil Disposisi</a>";
                     echo "<hr>";
                     ?>
 
